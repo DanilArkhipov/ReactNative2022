@@ -72,8 +72,8 @@ const Calculator = () => {
       return
     }
     
-    const currentResult = result.split(' ');
-    if (currentResult.length == 3){
+    let currentResult = result.split(' ');
+    if (currentResult.length == 3 && currentResult[2] != ''){
       switch (currentResult[1]) {
         case '+': {
           const res = (+currentResult[0] + +currentResult[2]).toString();
@@ -94,12 +94,14 @@ const Calculator = () => {
           break
         }
         case '/': {
-          if(+currentResult[2] == 0){
+          if(+result.split(' '[2]) == 0){
             setResult('Деление на ноль')
             setLastAction(ActionType.Error)
             return
           }
           const res = (+currentResult[0] / +currentResult[2]).toString()
+          console.log(currentResult)
+          console.log(res)
           setResult(res)
           AddOperationToResult(operation, res)
           break
@@ -132,7 +134,7 @@ const Calculator = () => {
         break
       }
       case OperationType.Div: {
-        setResult(result + ' / ')
+        setResult(newResult + ' / ')
         break
       }
     }
